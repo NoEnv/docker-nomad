@@ -28,7 +28,7 @@ if [ "$1" = 'agent' ]; then
     shift
     set -- nomad agent \
         -data-dir="$NOMAD_DATA_DIR" \
-        -config-dir="$NOMAD_CONFIG_DIR" \
+        -config="$NOMAD_CONFIG_DIR" \
         $NOMAD_BIND \
         "$@"
 elif [ "$1" = 'version' ]; then
@@ -49,7 +49,7 @@ if [ "$1" = 'nomad' ]; then
         setcap "cap_net_bind_service=+ep" /bin/nomad
     fi
 
-    set -- su-exec nomad:nomad "$@"
+    set -- su-exec root:root "$@"
 fi
 
 exec "$@"
