@@ -1,7 +1,7 @@
 FROM alpine:3.7
 
 LABEL maintainer "5G Systems"
-LABEL version "1.0.0"
+LABEL version "0.7.1"
 LABEL description "Nomad Agent as Docker Image"
 
 ENV NOMAD_VERSION=0.7.1
