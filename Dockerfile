@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:3.6
 
 LABEL maintainer "5G Systems"
 LABEL version "0.7.1"
