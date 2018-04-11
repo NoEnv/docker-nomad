@@ -8,11 +8,11 @@ Nomad Agent as Docker Image.
 
 most simple way of running the container
 
-    docker run --rm 5gsystems/nomad
+    docker run --rm noenv/nomad
 
 advanced usage
 
-    docker run --name nomad --net=host --privileged -v /tmp:/tmp -v /var/run/docker.sock:/var/run/docker.sock -v ~/.nomad:/nomad 5gsystems/nomad agent -config=/nomad/config
+    docker run --name nomad --net=host --privileged -v /tmp:/tmp -v /var/run/docker.sock:/var/run/docker.sock -v ~/.nomad:/nomad noenv/nomad agent -config=/nomad/config
 
 example config (~/.nomad/config/server.hcl)
 ```
@@ -39,4 +39,4 @@ consul {
 
 #### Source
 
-https://github.com/5GS/docker-nomad
+https://github.com/noenv/docker-nomad
