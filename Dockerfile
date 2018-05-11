@@ -1,10 +1,10 @@
 FROM alpine:3.7
 
 LABEL maintainer "NoEnv"
-LABEL version "0.7.1"
+LABEL version "0.8.3"
 LABEL description "Nomad Agent as Docker Image"
 
-ENV NOMAD_VERSION=0.7.1
+ENV NOMAD_VERSION=0.8.3
 ENV HASHICORP_RELEASES=https://releases.hashicorp.com
 ENV GLIBC_VERSION "2.27-r0"
 
@@ -12,7 +12,7 @@ RUN addgroup nomad && \
     adduser -S -G nomad nomad
 
 RUN apk add --no-cache ca-certificates dumb-init gnupg libcap openssl su-exec && \
-    gpg --keyserver pgp.mit.edu --recv-keys 91A6E7F85D05C65630BEF18951852D87348FFC4C && \
+    wget -O - https://keybase.io/hashicorp/pgp_keys.asc | gpg --import && \
     mkdir -p /tmp/build && \
     cd /tmp/build && \
     wget https://github.com/andyshinn/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk && \
