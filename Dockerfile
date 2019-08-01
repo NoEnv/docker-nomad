@@ -1,10 +1,10 @@
 FROM alpine:3.9
 
 LABEL maintainer "NoEnv"
-LABEL version "0.9.3"
+LABEL version "0.9.4"
 LABEL description "Nomad Agent as Docker Image"
 
-ENV NOMAD_VERSION=0.9.3
+ENV NOMAD_VERSION=0.9.4
 ENV HASHICORP_RELEASES=https://releases.hashicorp.com
 ENV GLIBC_VERSION "2.27-r0"
 
