@@ -1,12 +1,12 @@
-FROM alpine:3.9
+FROM alpine:3.10
 
 LABEL maintainer "NoEnv"
-LABEL version "0.9.5"
+LABEL version "0.9.6"
 LABEL description "Nomad Agent as Docker Image"
 
-ENV NOMAD_VERSION=0.9.5
+ENV NOMAD_VERSION=0.9.6
 ENV HASHICORP_RELEASES=https://releases.hashicorp.com
-ENV GLIBC_VERSION "2.27-r0"
+ENV GLIBC_VERSION "2.30-r0"
 
 RUN addgroup nomad && \
     adduser -S -G nomad nomad
