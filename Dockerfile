@@ -4,7 +4,7 @@ LABEL maintainer "NoEnv"
 LABEL version "0.10.1"
 LABEL description "Nomad Agent as Docker Image"
 
-ENV NOMAD_VERSION=0.10.1
+ENV NOMAD_VERSION=0.10.2
 ENV HASHICORP_RELEASES=https://releases.hashicorp.com
 ENV GLIBC_VERSION "2.30-r0"
 
