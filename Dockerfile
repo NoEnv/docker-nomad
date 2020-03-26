@@ -12,7 +12,7 @@ RUN addgroup nomad && \
     adduser -S -G nomad nomad
 
 RUN apk add --no-cache ca-certificates dumb-init gnupg libcap openssl su-exec && \
-    wget -O - https://keybase.io/hashicorp/pgp_keys.asc | gpg --import && \
+    gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys 51852D87348FFC4C && \
     mkdir -p /tmp/build && \
     cd /tmp/build && \
     wget https://github.com/andyshinn/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk && \
