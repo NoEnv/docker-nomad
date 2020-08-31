@@ -12,7 +12,7 @@ most simple way of running the container
 
 advanced usage
 
-    docker run --name nomad --net=host --privileged -v /tmp:/tmp -v /var/run/docker.sock:/var/run/docker.sock -v /nomad:/nomad noenv/nomad agent -config=/nomad/config
+    docker run --name nomad --net=host --privileged -v /tmp:/tmp -v /var/run/docker.sock:/var/run/docker.sock -v /nomad:/nomad -v /etc/os-release:/etc/os-release noenv/nomad agent -config=/nomad/config
 
 > the nomad directory must be the same in the container as well as on the host
 

@@ -6,12 +6,11 @@ LABEL description "Nomad Agent as Docker Image"
 
 ENV NOMAD_VERSION=0.12.3
 ENV HASHICORP_RELEASES=https://releases.hashicorp.com
-ENV GLIBC_VERSION "2.31-r0"
+ENV GLIBC_VERSION "2.32-r0"
 
 RUN addgroup nomad && \
-    adduser -S -G nomad nomad
-
-RUN apk add --no-cache ca-certificates dumb-init gnupg libcap openssl su-exec && \
+    adduser -S -G nomad nomad && \
+    apk add --no-cache ca-certificates dumb-init gnupg libcap openssl su-exec && \
     gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys 51852D87348FFC4C && \
     mkdir -p /tmp/build && \
     cd /tmp/build && \
@@ -23,11 +22,9 @@ RUN apk add --no-cache ca-certificates dumb-init gnupg libcap openssl su-exec &&
     gpg --batch --verify nomad_${NOMAD_VERSION}_SHA256SUMS.sig nomad_${NOMAD_VERSION}_SHA256SUMS && \
     grep nomad_${NOMAD_VERSION}_linux_amd64.zip nomad_${NOMAD_VERSION}_SHA256SUMS | sha256sum -c && \
     unzip -d /bin nomad_${NOMAD_VERSION}_linux_amd64.zip && \
-    rm -rf /tmp/build && \
     apk del gnupg openssl && \
-    rm -rf /root/.gnupg /var/cache/apk/*
-
-RUN mkdir -p /nomad/data && \
+    rm -rf /tmp/build /root/.gnupg /var/cache/apk/* /etc/alpine-release && \
+    mkdir -p /nomad/data && \
     mkdir -p /nomad/config && \
     chown -R nomad:nomad /nomad
 
