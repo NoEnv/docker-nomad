@@ -1,3 +1,5 @@
+[![Docker Pulls](https://badgen.net/docker/pulls/noenv/nomad)](https://hub.docker.com/r/noenv/nomad)
+
 ## docker-nomad
 
 #### Description
