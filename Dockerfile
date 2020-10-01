@@ -28,8 +28,6 @@ RUN addgroup nomad && \
     mkdir -p /nomad/config && \
     chown -R nomad:nomad /nomad
 
-VOLUME /nomad/data
-
 EXPOSE 4646 4647 4648 4648/udp
 
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
