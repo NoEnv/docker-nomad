@@ -12,7 +12,7 @@ ENV GLIBC_VERSION "2.33-r0"
 RUN addgroup nomad && \
     adduser -S -G nomad nomad && \
     apk add --no-cache ca-certificates dumb-init gnupg libcap openssl su-exec && \
-    gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys 51852D87348FFC4C 34365D9472D7468F && \
+    gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 51852D87348FFC4C 34365D9472D7468F && \
     mkdir -p /tmp/build /nomad/data/plugins /nomad/config && \
     cd /tmp/build && \
     wget https://github.com/andyshinn/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk && \
