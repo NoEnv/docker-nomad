@@ -30,7 +30,7 @@ RUN useradd -u 100 -r -d /nomad nomad && \
     grep nomad-driver-podman_${PODMAN_DRIVER_VERSION}_linux_${ARCHITECTURE}.zip nomad-driver-podman_${PODMAN_DRIVER_VERSION}_SHA256SUMS | sha256sum -c && \
     unzip -d /nomad/data/plugins nomad-driver-podman_${PODMAN_DRIVER_VERSION}_linux_${ARCHITECTURE}.zip && \
     microdnf -y remove unzip && microdnf clean all && \
-    rm -rf /var/lib/dnf/repos/* /tmp/* /var/tmp/* /var/log/*.log /var/cache/yum/* /var/lib/dnf/* /var/lib/rpm/* /root/.gnupg && \
+    rm -rf /tmp/* /var/tmp/* /var/log/*.log /var/cache/yum/* /var/lib/dnf/* /var/lib/rpm/* /root/.gnupg && \
     chown -R nomad:nomad /nomad
 
 EXPOSE 4646 4647 4648 4648/udp
