@@ -1,6 +1,6 @@
 ARG ARCHITECTURE=amd64
 
-FROM fedora:34
+FROM registry.fedoraproject.org/fedora-minimal:34
 
 ARG ARCHITECTURE
 
@@ -13,7 +13,7 @@ LABEL version "1.1.3"
 LABEL description "Nomad Agent as Docker Image"
 
 RUN useradd -u 100 -r -d /nomad nomad && \
-    dnf -y --setopt=tsflags=nodocs install ca-certificates unzip && \
+    microdnf -y --nodocs install unzip && \
     gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 51852D87348FFC4C 34365D9472D7468F && \
     mkdir -p /tmp/build /nomad/data/plugins /nomad/config && \
     cd /tmp/build && \
@@ -29,8 +29,8 @@ RUN useradd -u 100 -r -d /nomad nomad && \
     gpg --batch --verify nomad-driver-podman_${PODMAN_DRIVER_VERSION}_SHA256SUMS.sig nomad-driver-podman_${PODMAN_DRIVER_VERSION}_SHA256SUMS && \
     grep nomad-driver-podman_${PODMAN_DRIVER_VERSION}_linux_${ARCHITECTURE}.zip nomad-driver-podman_${PODMAN_DRIVER_VERSION}_SHA256SUMS | sha256sum -c && \
     unzip -d /nomad/data/plugins nomad-driver-podman_${PODMAN_DRIVER_VERSION}_linux_${ARCHITECTURE}.zip && \
-    dnf clean all && \
-    rm -rf /var/lib/dnf/repos/* /tmp/* /var/tmp/* /var/log/*.log /root/.gnupg && \
+    microdnf -y remove unzip && microdnf clean all && \
+    rm -rf /var/lib/dnf/repos/* /tmp/* /var/tmp/* /var/log/*.log /var/cache/yum/* /var/lib/dnf/* /var/lib/rpm/* /root/.gnupg && \
     chown -R nomad:nomad /nomad
 
 EXPOSE 4646 4647 4648 4648/udp
