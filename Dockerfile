@@ -13,7 +13,7 @@ LABEL version "1.1.3"
 LABEL description "Nomad Agent as Docker Image"
 
 RUN useradd -u 100 -r -d /nomad nomad && \
-    microdnf -y --nodocs install unzip && \
+    microdnf -y --nodocs install unzip iproute && \
     gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 51852D87348FFC4C 34365D9472D7468F && \
     mkdir -p /tmp/build /nomad/data/plugins /nomad/config && \
     cd /tmp/build && \
