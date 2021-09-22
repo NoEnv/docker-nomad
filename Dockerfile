@@ -4,9 +4,9 @@ FROM registry.fedoraproject.org/fedora-minimal:34
 
 ARG ARCHITECTURE
 
-ENV NOMAD_VERSION=1.1.5
-ENV PODMAN_DRIVER_VERSION=0.3.0
-ENV HASHICORP_RELEASES=https://releases.hashicorp.com
+ENV NOMAD_VERSION=1.1.5 \
+    PODMAN_DRIVER_VERSION=0.3.0 \
+    HASHICORP_RELEASES=https://releases.hashicorp.com
 
 LABEL maintainer "NoEnv"
 LABEL version "1.1.5"
