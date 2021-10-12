@@ -4,12 +4,12 @@ FROM registry.fedoraproject.org/fedora-minimal:34
 
 ARG ARCHITECTURE
 
-ENV NOMAD_VERSION=1.1.5 \
+ENV NOMAD_VERSION=1.1.6 \
     PODMAN_DRIVER_VERSION=0.3.0 \
     HASHICORP_RELEASES=https://releases.hashicorp.com
 
 LABEL maintainer "NoEnv"
-LABEL version "1.1.5"
+LABEL version "1.1.6"
 LABEL description "Nomad Agent as Docker Image"
 
 RUN useradd -u 100 -r -d /nomad nomad && \
@@ -30,7 +30,7 @@ RUN useradd -u 100 -r -d /nomad nomad && \
     grep nomad-driver-podman_${PODMAN_DRIVER_VERSION}_linux_${ARCHITECTURE}.zip nomad-driver-podman_${PODMAN_DRIVER_VERSION}_SHA256SUMS | sha256sum -c && \
     unzip -d /nomad/data/plugins nomad-driver-podman_${PODMAN_DRIVER_VERSION}_linux_${ARCHITECTURE}.zip && \
     microdnf -y remove unzip && microdnf clean all && \
-    rm -f /etc/fedora-release /etc/redhat-release /etc/system-release	/etc/system-release-cpe && \
+    rm -f /etc/fedora-release /etc/redhat-release /etc/system-release /etc/system-release-cpe && \
     rm -rf /tmp/* /var/tmp/* /var/log/*.log /var/cache/yum/* /var/lib/dnf/* /var/lib/rpm/* /root/.gnupg && \
     chown -R nomad:nomad /nomad
 
