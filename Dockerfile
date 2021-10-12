@@ -30,6 +30,7 @@ RUN useradd -u 100 -r -d /nomad nomad && \
     grep nomad-driver-podman_${PODMAN_DRIVER_VERSION}_linux_${ARCHITECTURE}.zip nomad-driver-podman_${PODMAN_DRIVER_VERSION}_SHA256SUMS | sha256sum -c && \
     unzip -d /nomad/data/plugins nomad-driver-podman_${PODMAN_DRIVER_VERSION}_linux_${ARCHITECTURE}.zip && \
     microdnf -y remove unzip && microdnf clean all && \
+    rm -f /etc/fedora-release /etc/redhat-release /etc/system-release	/etc/system-release-cpe && \
     rm -rf /tmp/* /var/tmp/* /var/log/*.log /var/cache/yum/* /var/lib/dnf/* /var/lib/rpm/* /root/.gnupg && \
     chown -R nomad:nomad /nomad
 
