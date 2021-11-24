@@ -4,12 +4,12 @@ FROM registry.fedoraproject.org/fedora-minimal:34
 
 ARG ARCHITECTURE
 
-ENV NOMAD_VERSION=1.2.1 \
+ENV NOMAD_VERSION=1.2.2 \
     PODMAN_DRIVER_VERSION=0.3.0 \
     HASHICORP_RELEASES=https://releases.hashicorp.com
 
 LABEL maintainer "NoEnv"
-LABEL version "1.2.1"
+LABEL version "1.2.2"
 LABEL description "Nomad Agent as Docker Image"
 
 RUN useradd -u 100 -r -d /nomad nomad && \
