@@ -12,8 +12,8 @@ LABEL maintainer "NoEnv"
 LABEL version "1.2.3"
 LABEL description "Nomad Agent as Docker Image"
 
-RUN useradd -u 100 -r -d /nomad nomad && \
-    microdnf -y --nodocs install unzip iproute && \
+RUN microdnf -y --nodocs install iproute systemd-libs unzip shadow-utils && \
+    useradd -u 100 -r -d /nomad nomad && \
     gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 51852D87348FFC4C 34365D9472D7468F && \
     mkdir -p /tmp/build /nomad/data/plugins /nomad/config && \
     cd /tmp/build && \
@@ -29,7 +29,7 @@ RUN useradd -u 100 -r -d /nomad nomad && \
     gpg --batch --verify nomad-driver-podman_${PODMAN_DRIVER_VERSION}_SHA256SUMS.sig nomad-driver-podman_${PODMAN_DRIVER_VERSION}_SHA256SUMS && \
     grep nomad-driver-podman_${PODMAN_DRIVER_VERSION}_linux_${ARCHITECTURE}.zip nomad-driver-podman_${PODMAN_DRIVER_VERSION}_SHA256SUMS | sha256sum -c && \
     unzip -d /nomad/data/plugins nomad-driver-podman_${PODMAN_DRIVER_VERSION}_linux_${ARCHITECTURE}.zip && \
-    microdnf -y remove unzip && microdnf clean all && \
+    microdnf -y remove unzip shadow-utils libsemanage && microdnf clean all && \
     rm -f /etc/fedora-release /etc/redhat-release /etc/system-release /etc/system-release-cpe && \
     rm -rf /tmp/* /var/tmp/* /var/log/*.log /var/cache/yum/* /var/lib/dnf/* /var/lib/rpm/* /root/.gnupg && \
     chown -R nomad:nomad /nomad
