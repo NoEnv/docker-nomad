@@ -1,6 +1,6 @@
 ARG ARCHITECTURE=amd64
 
-FROM registry.fedoraproject.org/fedora-minimal:36
+FROM registry.fedoraproject.org/fedora-minimal:35
 
 ARG ARCHITECTURE
 
