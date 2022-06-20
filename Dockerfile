@@ -1,8 +1,4 @@
-ARG ARCHITECTURE=amd64
-
 FROM registry.fedoraproject.org/fedora-minimal:36
-
-ARG ARCHITECTURE
 
 ENV NOMAD_VERSION=1.3.1 \
     PODMAN_DRIVER_VERSION=0.3.0 \
@@ -13,6 +9,18 @@ LABEL version "1.3.1"
 LABEL description "Nomad Agent as Docker Image"
 
 RUN microdnf -y --nodocs install iproute systemd-libs unzip shadow-utils && \
+    case "$(arch)" in \
+       aarch64|arm64|arm64e) \
+         ARCHITECTURE='arm64'; \
+         ;; \
+       x86_64|amd64|i386) \
+         ARCHITECTURE='amd64'; \
+         ;; \
+       *) \
+         echo "Unsupported architecture"; \
+         exit 1; \
+         ;; \
+    esac; \
     useradd -u 100 -r -d /nomad nomad && \
     gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 51852D87348FFC4C 34365D9472D7468F && \
     mkdir -p /tmp/build /nomad/data/plugins /nomad/config && \
