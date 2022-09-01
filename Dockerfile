@@ -32,7 +32,7 @@ RUN microdnf -y --nodocs install iproute systemd-libs unzip shadow-utils && \
     gpg --batch --verify nomad_${NOMAD_VERSION}_SHA256SUMS.sig nomad_${NOMAD_VERSION}_SHA256SUMS && \
     grep nomad_${NOMAD_VERSION}_linux_${ARCHITECTURE}.zip nomad_${NOMAD_VERSION}_SHA256SUMS | sha256sum -c && \
     unzip -d /bin nomad_${NOMAD_VERSION}_linux_${ARCHITECTURE}.zip && \
-    curl -s -O ${GITHUB_NIGHTLY_RELEASES}/nomad-driver-podman_${PODMAN_DRIVER_VERSION}_linux_${ARCHITECTURE}.zip && \
+    curl -sL -O ${GITHUB_NIGHTLY_RELEASES}/nomad-driver-podman_${PODMAN_DRIVER_VERSION}_linux_${ARCHITECTURE}.zip && \
     unzip -d /nomad/data/plugins nomad-driver-podman_${PODMAN_DRIVER_VERSION}_linux_${ARCHITECTURE}.zip && \
     microdnf -y remove unzip shadow-utils libsemanage && microdnf clean all && \
     rm -f /etc/fedora-release /etc/redhat-release /etc/system-release /etc/system-release-cpe && \
