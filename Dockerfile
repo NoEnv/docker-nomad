@@ -1,12 +1,12 @@
 FROM registry.fedoraproject.org/fedora-minimal:36
 
-ENV NOMAD_VERSION=1.4.1 \
+ENV NOMAD_VERSION=1.4.2 \
     PODMAN_DRIVER_VERSION=0.4.1-dev \
     HASHICORP_RELEASES=https://releases.hashicorp.com \
     GITHUB_NIGHTLY_RELEASES=https://github.com/hashicorp/nomad-driver-podman/releases/download/nightly
 
 LABEL maintainer "NoEnv"
-LABEL version "1.4.1"
+LABEL version "1.4.2"
 LABEL description "Nomad Agent as Docker Image"
 
 RUN microdnf -y --nodocs install iproute systemd-libs unzip shadow-utils && \
