@@ -1,14 +1,14 @@
 FROM registry.fedoraproject.org/fedora-minimal:39
 
-ENV NOMAD_VERSION=1.6.5 \
+ENV NOMAD_VERSION=1.7.2 \
     PODMAN_DRIVER_VERSION=0.5.1 \
     HASHICORP_RELEASES=https://releases.hashicorp.com
 
 LABEL maintainer "NoEnv"
-LABEL version "1.6.5"
+LABEL version "1.7.2"
 LABEL description "Nomad Agent as Docker Image"
 
-RUN microdnf -y --nodocs install gnupg2 iproute unzip shadow-utils && \
+RUN microdnf -y --nodocs install gnupg2 iproute unzip shadow-utils dmidecode && \
     case "$(arch)" in \
        aarch64|arm64|arm64e) \
          ARCHITECTURE='arm64'; \
