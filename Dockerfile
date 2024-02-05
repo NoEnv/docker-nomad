@@ -1,7 +1,7 @@
 FROM registry.fedoraproject.org/fedora-minimal:39
 
 ENV NOMAD_VERSION=1.7.3 \
-    PODMAN_DRIVER_VERSION=0.5.1 \
+    PODMAN_DRIVER_VERSION=0.5.2 \
     HASHICORP_RELEASES=https://releases.hashicorp.com
 
 LABEL maintainer "NoEnv"
