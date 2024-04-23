@@ -1,8 +1,9 @@
 FROM registry.fedoraproject.org/fedora-minimal:39
 
 ENV NOMAD_VERSION=1.7.7 \
-    PODMAN_DRIVER_VERSION=0.5.2 \
-    HASHICORP_RELEASES=https://releases.hashicorp.com
+    PODMAN_DRIVER_VERSION=0.6.0-dev \
+    HASHICORP_RELEASES=https://releases.hashicorp.com \
+    GITHUB_RELEASES=https://github.com/hashicorp/nomad-driver-podman/releases
 
 LABEL maintainer "NoEnv"
 LABEL version "1.7.7"
@@ -31,11 +32,7 @@ RUN microdnf -y --nodocs install gnupg2 iproute unzip shadow-utils dmidecode && 
     gpg --batch --verify nomad_${NOMAD_VERSION}_SHA256SUMS.sig nomad_${NOMAD_VERSION}_SHA256SUMS && \
     grep nomad_${NOMAD_VERSION}_linux_${ARCHITECTURE}.zip nomad_${NOMAD_VERSION}_SHA256SUMS | sha256sum -c && \
     unzip -d /bin nomad_${NOMAD_VERSION}_linux_${ARCHITECTURE}.zip && \
-    curl -s -O ${HASHICORP_RELEASES}/nomad-driver-podman/${PODMAN_DRIVER_VERSION}/nomad-driver-podman_${PODMAN_DRIVER_VERSION}_linux_${ARCHITECTURE}.zip && \
-    curl -s -O ${HASHICORP_RELEASES}/nomad-driver-podman/${PODMAN_DRIVER_VERSION}/nomad-driver-podman_${PODMAN_DRIVER_VERSION}_SHA256SUMS && \
-    curl -s -O ${HASHICORP_RELEASES}/nomad-driver-podman/${PODMAN_DRIVER_VERSION}/nomad-driver-podman_${PODMAN_DRIVER_VERSION}_SHA256SUMS.sig && \
-    gpg --batch --verify nomad-driver-podman_${PODMAN_DRIVER_VERSION}_SHA256SUMS.sig nomad-driver-podman_${PODMAN_DRIVER_VERSION}_SHA256SUMS && \
-    grep nomad-driver-podman_${PODMAN_DRIVER_VERSION}_linux_${ARCHITECTURE}.zip nomad-driver-podman_${PODMAN_DRIVER_VERSION}_SHA256SUMS | sha256sum -c && \
+    curl -sL -O ${GITHUB_RELEASES}/download/nightly/nomad-driver-podman_${PODMAN_DRIVER_VERSION}_linux_${ARCHITECTURE}.zip && \
     unzip -d /nomad/data/plugins nomad-driver-podman_${PODMAN_DRIVER_VERSION}_linux_${ARCHITECTURE}.zip && \
     microdnf -y remove unzip shadow-utils libsemanage && microdnf clean all && \
     rm -f /etc/fedora-release /etc/redhat-release /etc/system-release /etc/system-release-cpe && \
