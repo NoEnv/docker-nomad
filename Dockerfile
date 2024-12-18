@@ -1,7 +1,7 @@
 FROM registry.fedoraproject.org/fedora-minimal:41
 
 ENV NOMAD_VERSION=1.9.3 \
-    PODMAN_DRIVER_VERSION=0.6.1 \
+    PODMAN_DRIVER_VERSION=0.6.2 \
     HASHICORP_RELEASES=https://releases.hashicorp.com \
     GITHUB_RELEASES=https://github.com/hashicorp/nomad-driver-podman/releases
 
