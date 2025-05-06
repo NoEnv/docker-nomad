@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora-minimal:41
+FROM registry.fedoraproject.org/fedora-minimal:42
 
 ENV NOMAD_VERSION=1.10.0 \
     PODMAN_DRIVER_VERSION=0.6.2 \
