@@ -6,7 +6,7 @@ ENV NOMAD_VERSION=1.10.1 \
     GITHUB_RELEASES=https://github.com/hashicorp/nomad-driver-podman/releases
 
 LABEL maintainer "NoEnv"
-LABEL version "1.10.0"
+LABEL version "1.10.1"
 LABEL description "Nomad Agent as Docker Image"
 
 RUN microdnf -y --nodocs install gnupg2 iproute unzip shadow-utils dmidecode && \
