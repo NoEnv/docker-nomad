@@ -1,12 +1,12 @@
 FROM registry.fedoraproject.org/fedora-minimal:44
 
-ENV NOMAD_VERSION=2.0.1 \
+ENV NOMAD_VERSION=2.0.2 \
     PODMAN_DRIVER_VERSION=0.6.4 \
     HASHICORP_RELEASES=https://releases.hashicorp.com \
     GITHUB_RELEASES=https://github.com/hashicorp/nomad-driver-podman/releases
 
 LABEL maintainer "NoEnv"
-LABEL version "2.0.1"
+LABEL version "2.0.2"
 LABEL description "Nomad Agent as Docker Image"
 
 RUN microdnf -y --nodocs install gnupg2 iproute unzip shadow-utils dmidecode && \
